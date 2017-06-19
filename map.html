@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Places</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.min.css">
+    <style>
+    * {
+        font-family: sans-serif;
+        font-size: 8pt;
+    }
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    #map {
+        height: 100%;
+    }
+    #left,
+    #right {
+        top: 10px;
+        position: absolute;
+        width: 320px;
+        z-index: 2;
+    }
+    #left {
+        left: 10px;
+    }
+    #right {
+        right: 10px;
+        max-height: calc(100% - 20px);
+        overflow-y: auto;
+    }
+    .panel {
+        background-color: white;
+        border-radius: 2px;
+        box-shadow: 0px 1px 1px #bfbfbf;
+        margin-bottom: 10px;
+        padding:7px;
+    }
+    .route {
+        margin: 6px 0;
+    }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <div id="left">
+        <div class="panel">
+            <h4>My Trip</h4>
+        </div>
+        <div class="form-group panel">
+            <h5>Add Place</h5>
+            <input class="form-control" type="text" id="search" placeholder="Type a place name..." autofocus="autofocus">
+        </div>
+        <div class="panel">
+        <h5>From</h5>
+        <p id="waypoints_start"></p>
+            <h5>Places to Visit</h5>
+            <!-- <p id="waypoints"></p> -->
+            <ul id="places" class="list-group" style="margin-bottom: 7px;">
+                <li class="list-group-item" id="waypoints"></li>
+                <!-- <li class="list-group-item"></li>
+                <li class="list-group-item"></li> -->
+            </ul>
+            <button class="btn btn-primary btn-block" id="show" type="button" onclick="initDirections()">Get Routes</button>
+            <button class="btn btn-default btn-block" id="reset" type="button" onclick="resetAll()">New Trip</button>
+        </div>
+        <div class="panel">
+            <h5>Routes</h5>
+            <ul id="routes" class="list-group">
+                <li class="list-group-item">
+                    <button class="btn btn-primary" type="button" onclick="jalanfix()">D</button>&nbsp;
+				UNIKA Soegijapranata to Sam Poo Kong
+                </li>
+                <li class="list-group-item">
+                    <button class="btn btn-primary" type="button" onclick="addMyMarkerKaca()">D</button>&nbsp;
+				Sam Poo Kong to Maerakaca
+                </li>
+                <li class="list-group-item">
+                    <button class="btn btn-primary" type="button" onclick="addMyMarkerSewu()">D</button>&nbsp;
+				Maerakaca to Lawang Sewu
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="right" class="panel">
+        <h5>Directions</h5>
+        <ul class="list-group" style="margin-bottom: 7px">
+            <li id="origin" class="list-group-item">
+                <strong>Universitas Katolik Soegijapranata</strong>
+                Address : Jl. Pawiyatan Luhur IV/1, Bendan Dhuwur, Tinjomoyo, Banyumanik, Kota Semarang, Jawa Tengah 50235 <br>
+                Coordinates : -7.012743, 110.3671406 <br>
+                Contact : (024) 8441555
+            </li>
+            <li id="destination" class="list-group-item">
+                <strong>Klenteng Sam Poo Kong</strong>
+                Address : Jl. Simongan No.129, Bongsari, Semarang Bar., Kota Semarang, Jawa Tengah 50148 <br>
+                Coordinates : -7.012743, 110.3671406 <br>
+                Contact : (024) 7605277
+            </li>
+            <li id="description" class="list-group-item">
+                <strong>14 minutes (5.8 km)</strong>
+            </li>
+        </ul>
+        <ul id="listDir" class="list-group">
+            <li class="list-group-item" id="directions"></li>
+            <!-- <li class="list-group-item">Ambil Jl. Gg. 2/Jl. Raya Lamongan dan Jl. Lamongan Raya ke Jl. Cemara/Jl. Menoreh Raya di Semarang</li>
+            <li class="list-group-item">Ambil Jl. Kelud Raya ke Jl. Simongan di Ngemplak Simongan</li> -->
+        </ul>
+    </div>
+    <script src="assets/jquery-3.2.0.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.min.js"></script>
+    <script src="assets/script.js" charset="utf-8"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvuMZL8ZoKlNv_JwtupmM9vTEI4ZJLpVs&libraries=places&callback=initMap"
+    async defer></script>
+
+</body>
+</html>
